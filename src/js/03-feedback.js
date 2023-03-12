@@ -4,8 +4,6 @@ const formEl = document.querySelector('.feedback-form');
 const FORM_LOCAL_STORAGE_KEY = "feedback-form-state";
 const formData = {};
 
-populateTextValue()
-
 formEl.addEventListener('submit', handleFofmSubmit)
 formEl.addEventListener('input', throttle(getFormData, 500));
 
@@ -19,14 +17,18 @@ function handleFofmSubmit(e) {
   e.preventDefault();
   e.target.reset();
   localStorage.removeItem(FORM_LOCAL_STORAGE_KEY)
+  console.log(formData)
 }
 
 function populateTextValue() {
-  let savedMessage = localStorage.getItem(FORM_LOCAL_STORAGE_KEY);
+  let savedMessage = JSON.parse(localStorage.getItem(FORM_LOCAL_STORAGE_KEY));
 
   if (savedMessage) {
-    // console.log(savedMessage);
-    Object.values(formData) = savedMessage;
+    formEl.email.value = savedMessage.email || '';
+    formEl.message.value = savedMessage.message || '';
   }
+  console.log(formEl.email.value)
 }
-console.log(formData)
+
+
+populateTextValue()
