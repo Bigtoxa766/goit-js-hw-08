@@ -26,6 +26,7 @@ function populateTextValue() {
 
   if (savedMessage) {
     // console.log(savedMessage);
-    // Object.values(formData) = savedMessage;
+    Object.values(formData) = savedMessage;
   }
 }
+console.log(formData)
